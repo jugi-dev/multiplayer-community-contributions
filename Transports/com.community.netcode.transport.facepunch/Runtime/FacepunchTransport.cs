@@ -110,16 +110,19 @@ namespace Netcode.Transports.Facepunch
         {
             connectedClients = new Dictionary<ulong, Client>();
 
-            try
+            while (!SteamClient.IsValid)
             {
-                SteamClient.Init(steamAppId, false);
-            }
-            catch (Exception e)
-            {
-                if (LogLevel <= LogLevel.Error)
-                    Debug.LogError(
-                        $"[{nameof(FacepunchTransport)}] - Caught an exeption during initialization of Steam client: {e}"
-                    );
+                try
+                {
+                    SteamClient.Init(steamAppId, false);
+                }
+                catch (Exception e)
+                {
+                    if (LogLevel <= LogLevel.Error)
+                        Debug.LogError(
+                            $"[{nameof(FacepunchTransport)}] - Caught an exeption during initialization of Steam client: {e}"
+                        );
+                }
             }
         }
 
