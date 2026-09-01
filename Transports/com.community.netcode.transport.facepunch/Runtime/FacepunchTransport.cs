@@ -377,26 +377,5 @@ namespace Netcode.Transports.Facepunch
         }
 
         #endregion
-
-        #region Utility Methods
-
-        private IEnumerator InitSteamworks()
-        {
-            yield return new WaitUntil(() => SteamClient.IsValid);
-
-            SteamNetworkingUtils.InitRelayNetworkAccess();
-
-            if (LogLevel <= LogLevel.Developer)
-                Debug.Log(
-                    $"[{nameof(FacepunchTransport)}] - Initialized access to Steam Relay Network."
-                );
-
-            userSteamId = SteamClient.SteamId;
-
-            if (LogLevel <= LogLevel.Developer)
-                Debug.Log($"[{nameof(FacepunchTransport)}] - Fetched user Steam ID.");
-        }
-
-        #endregion
     }
 }
